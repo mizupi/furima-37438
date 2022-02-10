@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
+  before_action :authenticate_user!, only: :new 
+  # 上記newアクションは仮
 
   private
 
