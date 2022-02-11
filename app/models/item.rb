@@ -10,8 +10,8 @@ class Item < ApplicationRecord
   belongs_to :days
 
   validates :image, presence: true
-  validates :name, presence: true
-  validates :description, presence: true
+  validates :name, presence: true, length: { maximum: 40 } 
+  validates :description, presence: true, length: { maximum: 1000 } 
   
   with_options presence: true, numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
