@@ -65,27 +65,27 @@ RSpec.describe Item, type: :model do
       it 'nameが41文字以上だと登録できない' do
         @item.name = Faker::String.random(length: 41)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
+        expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
       end
       it 'descriptionが1000文字以上だと登録できない' do
         @item.description = Faker::String.random(length: 1001)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
+        expect(@item.errors.full_messages).to include('Description is too long (maximum is 1000 characters)')
       end
       it 'priceが全角数字だと登録できない' do
         @item.price = '１１１１１'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid. Input half-width characters")
+        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
       end
       it 'priceが299円以下だと登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it 'priceが10,000,000円以上だと登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
     end
   end
