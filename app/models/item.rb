@@ -10,9 +10,9 @@ class Item < ApplicationRecord
   belongs_to :days
 
   validates :image, presence: true
-  validates :name, presence: true, length: { maximum: 40 } 
-  validates :description, presence: true, length: { maximum: 1000 } 
-  
+  validates :name, presence: true, length: { maximum: 40 }
+  validates :description, presence: true, length: { maximum: 1000 }
+
   with_options presence: true, numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :status_id
@@ -21,10 +21,10 @@ class Item < ApplicationRecord
     validates :days_id
   end
 
-  with_options presence: true, format: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' } do
+  with_options presence: true, numericality: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' } do
     validates :price
   end
 
-  validates :price, numericality: { less_than_or_equal_to:300, greater_than_or_equal_to:9_999_999, message: 'is out of setting range' }
-
+  validates :price,
+            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range' }
 end
