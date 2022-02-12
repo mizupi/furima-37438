@@ -87,6 +87,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
+      it 'priceに小数が含まれていると登録できない' do
+        @item.price = 11_111.1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is invalid. Input only integer')
+      end
     end
   end
 end
