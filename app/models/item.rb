@@ -21,7 +21,7 @@ class Item < ApplicationRecord
     validates :days_id
   end
 
-  with_options presence: true, numericality: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' } do
+  with_options presence: true, numericality: { message: 'is invalid. Input half-width characters' } do
     validates :price
   end
 
