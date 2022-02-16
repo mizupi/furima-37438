@@ -5,7 +5,6 @@ RSpec.describe RecordDestination, type: :model do
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
-      purchase_record = PurchaseRecord.create(user_id: user.id, item_id: item.id)
       @record_destination = FactoryBot.build(:record_destination, user_id: user.id, item_id: item.id)
     end
 
