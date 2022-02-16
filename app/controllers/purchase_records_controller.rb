@@ -1,7 +1,7 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-  before_action :move_to_index
+  before_action :move_to_index, only: [:index, :create]
 
   def index
     @record_destination = RecordDestination.new
@@ -25,7 +25,7 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if @item.user != current_user || @item.purchase_record.present?
+    redirect_to root_path if @item.user == current_user || @item.purchase_record.present?
   end
 
   def purchase_record_params
