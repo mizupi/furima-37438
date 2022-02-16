@@ -1,7 +1,6 @@
 class RecordDestination
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :address, :building_name, :phone_number,
-                :purchase_record_id, :token
+  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :token
 
   with_options presence: true do
     validates :token
@@ -18,6 +17,6 @@ class RecordDestination
   def save
     purchase_record = PurchaseRecord.create(user_id: user_id, item_id: item_id)
     Destination.create(post_code: post_code, prefecture_id: prefecture_id, city: city, address: address,
-                       building_name: building_name, phone_number: phone_number, purchase_record_id: purchase_record_id)
+                       building_name: building_name, phone_number: phone_number, purchase_record_id: purchase_record.id)
   end
 end
